@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('user');
             $table->text('content');
             $table->timestamps();
-            $table->timestamps('published_times')->index();
+            $table->timestamp('published_at')->index();
         });
     }
 
