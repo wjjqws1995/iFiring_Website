@@ -9,12 +9,15 @@ class Post extends Model
     //
     protected $dates = ['published_at'];
 
+    /**
+     * @param $value
+     */
     public function setTitleAttribute($value){
 
-        $this->attribute['title'] = $value;
+        $this->attributes['title'] = $value;
 
         if(!$this->exists){
-            $this->attribute['slug'] = str_slug($value);
+            $this->attributes['slug'] = str_slug($value);
         }
     }
 }
