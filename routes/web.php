@@ -34,9 +34,9 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth'],function (){
 
 //Login and out
 Route::group(['namespace'=>'Auth'],function (){
-//    Route::get('/login','LoginController@showLoginForm');
+    Route::get('/auth/login','LoginController@showLoginForm')->name('showloginform');
 
-//    Route::post('/login','LoginController');
-//
-//    Route::get('/logout','LoginController');
+    Route::post('/auth/login','LoginController@login')->name('login');
+
+    Route::get('/auth/logout','LoginController@logout')->name('logout');
 });
