@@ -11,10 +11,30 @@
 |
 */
 
+//Home Page
 Route::get('/', function () {
     return view('welcome');
 });
 
+//Blog Page
 Route::get('blog','BlogController@index');
 
 Route::get('blog/{slug}','BlogController@showPost');
+
+//Admin Page
+Route::get('admin',function (){
+    return redirect('/admin/post');
+});
+
+Route::group(['namespace'=>'Admin','middleware'=>'auth'],function (){
+    Route::resource('admin/post','PostContrller');
+    Route::resource('admin/tag','TagController');
+    Route::get('admin/upload','UploadController@index');
+});
+
+//Login and out
+Route::get('/auth/login','Auth\AuthSontroller@getLogin');
+
+Route::post('/auth/login','Auth\AuthController@postLogin');
+
+Route::get ('/auth/logout','Auth\AuthController@getLogout');
