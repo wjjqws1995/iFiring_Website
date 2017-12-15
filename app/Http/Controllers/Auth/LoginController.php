@@ -26,7 +26,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/admin/post';//登录后的网址
-
     protected $redirectAfterLogout='/login';//定义登出后转跳页面
     /**
      * Create a new controller instance.
@@ -36,5 +35,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
     }
 }
