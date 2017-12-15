@@ -25,8 +25,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/post';//登录后的网址
 
+    protected $redirectAfterLogout='/login';//定义登出后转跳页面
     /**
      * Create a new controller instance.
      *
