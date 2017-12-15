@@ -27,14 +27,16 @@ Route::get('admin',function (){
 });
 
 Route::group(['namespace'=>'Admin','middleware'=>'auth'],function (){
-    Route::resource('admin/post','PostContrller');
+    Route::resource('admin/post','PostController');
     Route::resource('admin/tag','TagController');
     Route::get('admin/upload','UploadController@index');
 });
 
 //Login and out
-Route::get('/auth/login','Auth\AuthSontroller@getLogin');
+Route::group(['namespace'=>'Auth'],function (){
+//    Route::get('/login','LoginController@showLoginForm');
 
-Route::post('/auth/login','Auth\AuthController@postLogin');
-
-Route::get ('/auth/logout','Auth\AuthController@getLogout');
+//    Route::post('/login','LoginController');
+//
+//    Route::get('/logout','LoginController');
+});
