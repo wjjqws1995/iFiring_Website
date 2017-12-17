@@ -32,7 +32,7 @@ class Tag extends Model
             return;
         }
 
-        $found = static::whereIn('tag', $tags)->lists('tag')->all();//从tags表中找出存在的tag
+        $found = static::whereIn('tag', $tags)->pluck('tag')->all();//从tags表中找出存在的tag
         //对比从表中找的tag和 现在的tag，将没有的tag创建出来
 
         foreach (array_diff($tags, $found) as $tag) {
